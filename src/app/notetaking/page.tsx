@@ -15,6 +15,7 @@ import NavBar from '../components/NavBar/page'
 import type { Note } from '../types'
 import NoteCard from '../components/NoteCard/page'
 import axios from 'axios'
+import NotesCounter from '../components/NotesCounter/page'
 
 function NotesPage() {
   const [notes, setNotes] = React.useState<Note[]>([])
@@ -73,6 +74,15 @@ function NotesPage() {
       } catch (error) {
         console.error('Erro ao adicionar a nota', error)
       }
+    }
+  }
+
+  const handleDelete = async (id: number) => {
+    try {
+      await axios.delete(`http://localhost:8080/notes/${id}`)
+      setNotes((prevNotes) => prevNotes.filter((note) => note.id !== id))
+    } catch (error) {
+      console.error('Erro ao remover a nota ', error)
     }
   }
 
@@ -138,18 +148,18 @@ function NotesPage() {
           </Button>
         </form>
       </Container>
-      <NotesList notes={notes} />
+      <NotesList notes={notes} onDelete={handleDelete}/>
     </div>
   )
 }
 
-function NotesList({ notes }: { notes: Note[] }) {
+function NotesList({ notes, onDelete }: { notes: Note[]; onDelete: (id: number) => void }) {
   return (
-    <div>
+    <Container sx={{ p: 6}}>
       {notes.map((note) => (
-        <NoteCard key={note.id} n={note} />
+        <NoteCard key={note.id} n={note} onDelete={onDelete}/>
       ))}
-    </div>
+    </Container>
   )
 }
 

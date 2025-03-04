@@ -13,12 +13,11 @@ import {
   Tooltip,
   Avatar,
   MenuItem,
+  Link
 } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu'
 import AdbIcon from '@mui/icons-material/Adb'
-
-// const pages = ['Dashboard', 'Notes']
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout']
+import { deepPurple } from '@mui/material/colors'
 
 function NavBar() {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null)
@@ -130,7 +129,7 @@ function NavBar() {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title='Open settings'>
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt='Remy Sharp' src='/static/images/avatar/2.jpg' />
+                <Avatar sx={{ bgcolor: deepPurple[500] }}>AG</Avatar>
               </IconButton>
             </Tooltip>
             <Menu
@@ -149,13 +148,13 @@ function NavBar() {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography sx={{ textAlign: 'center' }}>
-                    {setting}
+              <MenuItem key='settings' onClick={handleCloseUserMenu}>
+                <Link href='/settings' color='inherit' underline='none'>
+                  <Typography sx={{textAlign: 'center'}}>
+                    Settings
                   </Typography>
-                </MenuItem>
-              ))}
+                </Link>
+              </MenuItem>
             </Menu>
           </Box>
         </Toolbar>

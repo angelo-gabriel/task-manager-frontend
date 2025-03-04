@@ -1,11 +1,10 @@
-// NoteCard.tsx
 import React from 'react'
 import { Typography, Card, CardHeader, IconButton, Avatar, CardContent } from '@mui/material'
 import { pink, blue, green, yellow } from '@mui/material/colors'
 import { DeleteOutlineOutlined } from '@mui/icons-material'
-import { Note } from '../../types'  // Importe o tipo Note corretamente
+import { Note } from '../../types'
 
-// Função que retorna a cor do avatar de acordo com a categoria
+// Função que retorna a cor da nota de acordo com a categoria
 const getAvatarColor = (category: string) => {
   switch (category) {
     case 'work':
@@ -19,13 +18,12 @@ const getAvatarColor = (category: string) => {
   }
 }
 
-// Defina as propriedades do componente NoteCard
 interface NoteCardProps {
-  n: Note  // Aqui o tipo da propriedade n é o tipo Note
+  n: Note
+  onDelete: (id: number) => void
 }
 
-// O componente NoteCard que recebe o tipo de nota como propriedade
-const NoteCard: React.FC<NoteCardProps> = ({ n }) => {
+const NoteCard: React.FC<NoteCardProps> = ({ n, onDelete }) => {
   return (
     <Card elevation={1} sx={{ marginBottom: 2 }}>
       <CardHeader
@@ -35,7 +33,7 @@ const NoteCard: React.FC<NoteCardProps> = ({ n }) => {
           </Avatar>
         }
         action={
-          <IconButton onClick={() => console.log('teste click')}>
+          <IconButton onClick={() => onDelete(n.id)}>
             <DeleteOutlineOutlined />
           </IconButton>
         }
