@@ -27,7 +27,7 @@ function NotesPage() {
 
   const fetchNotes = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/notes')
+      const response = await axios.get('http://localhost:3333/notes')
       setNotes(response.data.notes)
     } catch (error) {
       console.error('Erro ao carregar as notas', error)
@@ -65,7 +65,7 @@ function NotesPage() {
       setCategory('todos')
 
       try {
-        const response = await axios.post('http://localhost:8080/notes', newNote)
+        const response = await axios.post('http://localhost:3333/notes', newNote)
         fetchNotes()
         setNotes((prevNotes) => [...prevNotes, response.data])
         setTitle('')
@@ -79,7 +79,7 @@ function NotesPage() {
 
   const handleDelete = async (id: number) => {
     try {
-      await axios.delete(`http://localhost:8080/notes/${id}`)
+      await axios.delete(`http://localhost:3333/notes/${id}`)
       setNotes((prevNotes) => prevNotes.filter((note) => note.id !== id))
     } catch (error) {
       console.error('Erro ao remover a nota ', error)
