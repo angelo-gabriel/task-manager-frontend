@@ -9,7 +9,7 @@ function AiChat() {
   return (
     <div className='chat-page'>
       <NavBar />
-      <Container maxWidth='lg'>
+      <Container maxWidth='lg' sx={{ mt: 4 }}>
         <Chatroom />
       </Container>
     </div>

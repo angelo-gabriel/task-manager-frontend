@@ -1,7 +1,7 @@
 'use client'
 
 import Navbar from '../components/NavBar/page'
-import { Container, Typography, Button } from '@mui/material'
+import { Container, Typography, Button, Paper } from '@mui/material'
 import Image from 'next/image'
 import NotesCounter from '../components/NotesCounter/page'
 import type { Note } from '../types'
@@ -42,15 +42,17 @@ function SettingsPage() {
           height={400}
           alt='your profile picture'
         />
-        <Container>
+        <Paper elevation={1} sx={{ ':hover': {
+          boxShadow: 6 
+        }, p: 6}}>
           <Typography variant='h4' sx={{ p: 4 }}>
             Ângelo Gabriel
           </Typography>
           <Typography variant='body1'>
-            Website created by me, all rights reserved. Lorem ipsum dolor sit, amet
-            consectetur adipisicing elit. Amet temporibus eveniet, quaerat sequi
-            officia voluptas, quas dolores fugiat recusandae adipisci fugit
-            commodi. Nemo odio libero rem voluptate commodi animi minus?
+            Website created by me, all rights reserved. Lorem ipsum dolor sit,
+            amet consectetur adipisicing elit. Amet temporibus eveniet, quaerat
+            sequi officia voluptas, quas dolores fugiat recusandae adipisci
+            fugit commodi. Nemo odio libero rem voluptate commodi animi minus?
           </Typography>
           <NotesCounter count={notes.length} />
           <Button variant='outlined' href='/notetaking' sx={{ mt: 4 }}>
@@ -59,7 +61,7 @@ function SettingsPage() {
           <Button variant='contained' href='/' sx={{ ml: 6, mt: 4 }}>
             Dashboard
           </Button>
-        </Container>
+        </Paper>
       </Container>
     </div>
   )
