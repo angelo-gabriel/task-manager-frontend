@@ -13,7 +13,7 @@ function SettingsPage() {
 
   const fetchNotes = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/notes')
+      const response = await axios.get('http://localhost:3333/notes')
       setNotes(response.data.notes)
     } catch (error) {
       console.error('Erro ao carregar as notas', error)
